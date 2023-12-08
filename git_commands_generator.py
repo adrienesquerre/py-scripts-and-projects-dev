@@ -1,0 +1,64 @@
+def colored(text, color_code):
+    """
+    Wrap the text with the ANSI escape codes for the given color.
+    """
+    return f"\033[{color_code}m{text}\033[0m"
+
+def add_command(commands, text, color_code, is_command=False):
+    """
+    Adds a command or comment to the commands list with the appropriate color formatting.
+    """
+    if is_command:
+        commands.append(colored(text, color_code))
+    else:
+        commands.append(colored("-----------------------------------------------------", "1;37"))
+        commands.append(colored(text, color_code))
+
+def generate_git_commands(new_branch_name, commit_message, repo_url):
+    """
+    Generate a list of git commands to sync with the remote repository,
+    create a new branch, and commit changes, with improved modularity and color coding.
+    """
+    repository_name = repo_url.split('/')[-1].replace('.git', '')
+
+    # Color codes: green for comments, magenta for commands
+    green = "0;32"
+    magenta = "0;35"
+
+    commands = []
+    add_command(commands, "# Clone the repository", green)
+    add_command(commands, f"git clone {repo_url}", magenta, is_command=True)
+    add_command(commands, f"# Reminder: Change to the cloned directory '{repository_name}'", green)
+    add_command(commands, f"cd {repository_name}", magenta, is_command=True)
+    add_command(commands, "# Fetch the latest changes from all branches", green)
+    add_command(commands, "git fetch --all", magenta, is_command=True)
+    add_command(commands, "# Switch to the master branch", green)
+    add_command(commands, "git checkout master", magenta, is_command=True)
+    add_command(commands, "# Pull the latest changes from the master branch", green)
+    add_command(commands, "git pull origin master", magenta, is_command=True)
+    add_command(commands, "# Create and switch to the new branch", green)
+    add_command(commands, f"git checkout -b {new_branch_name}", magenta, is_command=True)
+    add_command(commands, "# Check the current branch", green)
+    add_command(commands, "git status", magenta, is_command=True)
+    add_command(commands, "# Reminder: Make your code changes now", green)
+    add_command(commands, "# Add changes to staging", green)
+    add_command(commands, "git add .", magenta, is_command=True)
+    add_command(commands, "# Commit the changes", green)
+    add_command(commands, f"git commit -m \"{commit_message}\"", magenta, is_command=True)
+    add_command(commands, "# Push the new branch to the remote repository", green)
+    add_command(commands, f"git push --set-upstream origin {new_branch_name}", magenta, is_command=True)
+    add_command(commands, "# Reminder: If it's a new branch that doesn't exist in the remote repository yet,\n# you'll need to use -set-upstream otherwise remove this option", green)
+
+
+    return '\n'.join(commands)
+
+new_branch_name = input("Enter the name of the new branch: ")
+commit_message = input("Enter the commit message: ")
+repo_url = input("Enter the repository URL (if SSL connection, starts with git): ")
+
+git_instructions = generate_git_commands(new_branch_name, commit_message, repo_url)
+print(git_instructions)
+
+# The script should be run in a local Python environment where stdin is available.
+
+
