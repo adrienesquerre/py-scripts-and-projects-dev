@@ -28,8 +28,8 @@ def generate_git_commands(new_branch_name, commit_message, repo_url):
     commands = []
     add_command(commands, "# Clone the repository", green)
     add_command(commands, f"git clone {repo_url}", magenta, is_command=True)
-    add_command(commands, f"# Reminder: Change to the cloned directory '{repository_name}'", green)
-    add_command(commands, f"cd {repository_name}", magenta, is_command=True)
+    add_command(commands, f"# Reminder: Change to the cloned directory", green)
+    add_command(commands, f"cd your-cloned-directory", magenta, is_command=True)
     add_command(commands, "# Fetch the latest changes from all branches", green)
     add_command(commands, "git fetch --all", magenta, is_command=True)
     add_command(commands, "# Switch to the master branch", green)
