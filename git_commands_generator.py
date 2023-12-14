@@ -26,7 +26,7 @@ def generate_git_commands(new_branch_name, commit_message, repo_url):
     magenta = "0;35"
 
     commands = []
-    add_command(commands, "# Test connection and clone the repository", green) # Clones the remote repository to your local machine, including all files, history, and branches
+    add_command(commands, "# Test connection with git remote -v and clone the repository", green) # Clones the remote repository to your local machine, including all files, history, and branches
     add_command(commands, f"git clone {repo_url}", magenta, is_command=True)
     add_command(commands, f"# Reminder: Change to the cloned directory", green)
     add_command(commands, f"cd your-cloned-directory", magenta, is_command=True)
