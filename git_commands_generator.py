@@ -26,7 +26,8 @@ def generate_git_commands(new_branch_name, commit_message, repo_url):
     magenta = "0;35"
 
     commands = []
-    add_command(commands, "# Clone the repository", green)
+    add_command(commands, "# Test connection and clone the repository", green) # clones all files, history, and branches
+    add_command(commands, f"git remote -v", magenta, is_command=True)
     add_command(commands, f"git clone {repo_url}", magenta, is_command=True)
     add_command(commands, f"# Reminder: Change to the cloned directory", green)
     add_command(commands, f"cd your-cloned-directory", magenta, is_command=True)
@@ -46,8 +47,8 @@ def generate_git_commands(new_branch_name, commit_message, repo_url):
     add_command(commands, "# Commit the changes", green)
     add_command(commands, f"git commit -m \"{commit_message}\"", magenta, is_command=True)
     add_command(commands, "# Push the new branch to the remote repository", green)
-    add_command(commands, f"git push --set-upstream origin {new_branch_name}", magenta, is_command=True)
-    add_command(commands, "# Reminder: If it's a new branch that doesn't exist in the remote repository yet,\n# you'll need to use -set-upstream otherwise remove this option", green)
+    add_command(commands, f"git push -u origin {new_branch_name}", magenta, is_command=True)
+    add_command(commands, "# Reminder: If it's a new branch - not in the repository yet,\n# need to use -u (shorthand for --set-upstream), then just use git push or git pull", green)
 
 
     return '\n'.join(commands)
@@ -61,4 +62,19 @@ print(git_instructions)
 
 # The script should be run in a local Python environment where stdin is available.
 
+# test connection:
+# with ssh -T git@github.com or curl -u username https://api.github.com/user for basic HTTPS connectivity
+# git remote -v
+# git config user.name
+# git config user.email
 
+# git clone VS git pull
+# git clone {repo_url}:
+# initializes a .git directory inside and clones the remote repository to your local machine, including all files, history, and branches.
+# git pull {repo_url}:
+# Fetches changes from the remote branch and merges them into your local branch. It's essentially a combination of git fetch followed by git merge.
+# setting upstream tracking with -u, you can just use git push or git pull while on new-branch
+
+# The .git directory contains all the necessary repository metadata and object database.
+# The .git directory is what makes a directory a Git repository.
+# Changes to the .git directory can corrupt the repository.
