@@ -4,16 +4,30 @@ import spacy
 # Load the spaCy model
 nlp = spacy.load("en_core_web_sm")
 
+# List of specific military entities
+military_entities = ["tank", "rifle", "grenade launcher", "machine gun", "artillery", "missile"]
+
+def find_military_entities_with_context(text, entities):
+    doc = nlp(text)
+    found_entities_with_context = {}
+
+    for sent in doc.sents:
+        for token in sent:
+            if token.text.lower() in entities:
+                found_entities_with_context[token.text] = sent.text
+
+    return found_entities_with_context
+
 def process_text_with_nlp(filename):
     with open(filename, 'r', encoding='utf-8') as file:
         data = json.load(file)
 
     processed_data = []
     for item in data:
-        doc = nlp(item['description'])
-        # Process the text and extract information
-        # For example, finding specific entities or keywords
-        # Update 'item' with new fields or processed information if necessary
+        entities_context = find_military_entities_with_context(item['description'], military_entities)
+
+        # Update the item with new fields or processed information
+        item['military_entities'] = entities_context
         processed_data.append(item)
 
     return processed_data
