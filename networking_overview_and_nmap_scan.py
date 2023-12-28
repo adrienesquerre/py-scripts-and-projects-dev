@@ -6,7 +6,7 @@ import struct
 
 def perform_nmap_scan():
     nm = nmap.PortScanner()
-    nm.scan('10.196.200.0/23', '21-25,80,443,22', arguments='-sT -T4')
+    nm.scan('192.168.0.0/24', '21-25,80,443,22', arguments='-sT -T4')
 
     for host in nm.all_hosts():
         print("\n--------------------------------------------------")
