@@ -5,7 +5,9 @@ import ipaddress
 def get_ip_and_subnet():
     try:
         # Run ipconfig command and capture the output
-        result = subprocess.check_output("cmd.exe /c ipconfig", shell=True).decode()
+        # result = subprocess.check_output("cmd.exe /c ipconfig", shell=True).decode()
+        result = subprocess.check_output(["cmd.exe", "/c", "ipconfig"], shell=True).decode()
+
 
         # Find the IPv4 Address and Subnet Mask
         ipv4_info = re.findall(r'IPv4 Address.*?: (\S+).*?Subnet Mask.*?: (\S+)', result, re.DOTALL)
