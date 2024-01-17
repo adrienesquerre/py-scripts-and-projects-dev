@@ -78,3 +78,21 @@ print(git_instructions)
 # The .git directory contains all the necessary repository metadata and object database.
 # The .git directory is what makes a directory a Git repository.
 # Changes to the .git directory can corrupt the repository.
+
+#### IF YOU HAVE INCORRECTLY NAMED THE BRANCH ####
+# Steps if you have named a branch incorrectly AND pushed this to the remote repository:
+
+# Check on which branch you are:
+#     git branch -a
+
+# Switch to the local branch you want to rename
+#     git checkout <old_name>
+
+# Rename the local branch
+#     git branch -m <new_name>
+
+# Push the <new_name> local branch and reset the upstream branch
+#     git push origin -u <new_name>
+
+# Delete the <old_name> remote branch
+#     git push origin --delete <old_name>
