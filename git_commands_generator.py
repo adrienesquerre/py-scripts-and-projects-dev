@@ -96,3 +96,11 @@ print(git_instructions)
 
 # Delete the <old_name> remote branch
 #     git push origin --delete <old_name>
+
+#### DELETE REMOTE & LOCAL BRANCH ####
+# Delete remote
+#       git push origin --delete hotfix/ECE-225
+# Change branch
+#       git checkout master
+# Delete local
+#       git branch -D hotfix/ECE-225
