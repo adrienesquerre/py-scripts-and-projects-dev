@@ -55,7 +55,7 @@ def generate_git_commands(new_branch_name, commit_message, repo_url):
 
 new_branch_name = input("Enter the name of the new branch: ")
 commit_message = input("Enter the commit message: ")
-repo_url = input("Please Enter the repository URL (if SSL connection, starts with git): ")
+repo_url = input("Enter the repository URL (if SSL connection, starts with git): ")
 
 git_instructions = generate_git_commands(new_branch_name, commit_message, repo_url)
 print(git_instructions)
