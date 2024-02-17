@@ -1,4 +1,4 @@
-# Tamagotchi Virtual Pet Game README
+# Tamagotchi Virtual Pet Game
 
 ## Overview
 The Tamagotchi Virtual Pet Game is a simple Python-based project where players can adopt and take care of a virtual pet, choosing from a dog, cat, or owl. Through a series of interactive prompts, players can feed, talk to, and play with their pet to keep it happy and healthy.
