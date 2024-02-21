@@ -97,10 +97,34 @@ print(git_instructions)
 # Delete the <old_name> remote branch
 #     git push origin --delete <old_name>
 
+#### Fetch the Latest List of Branches from Remote ####
+#   git fetch --prune
+# List all branches again
+#   git branch -a
+# Delete local branch
+#   git branch -d feature/branch
+# Delete local branch unmerged changes with unmerged changes
+#   git branch -D feature/branch
+
 #### DELETE REMOTE & LOCAL BRANCH ####
 # Delete remote
-#       git push origin --delete hotfix/ECE-225
+#       git push origin --delete hotfix/branch
 # Change branch
 #       git checkout master
 # Delete local
-#       git branch -D hotfix/ECE-225
+#       git branch -D hotfix/branch
+
+
+### DISCARD ALL LOCAL CHANGES AND COMMITS !!
+# and completely overwrite your local repo
+# with the state of the remote repository:
+
+
+# Fetch the latest history from remote
+#   git fetch origin
+
+# Reset your current branch to the latest state from remote
+#   git reset --hard origin/master
+
+# Clean up any untracked files or directories in your local repository
+#   git clean -fd
