@@ -128,3 +128,12 @@ print(git_instructions)
 
 # Clean up any untracked files or directories in your local repository
 #   git clean -fd
+
+### DISCARD COMMITS without destroying the work !
+# Delete the most recent commit, without destroying the work you've done:
+
+# git reset --soft HEAD~1
+
+# Delete the most recent commit and remove changes:
+
+# git reset --hard HEAD~1
